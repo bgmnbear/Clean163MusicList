@@ -54,7 +54,11 @@ var numOfSongs = function() {
 
 var createList = function(name) {
     es('u-btn u-btn-crt f-fr j-flag')[0].click()
-    es('u-txt j-flag')[0].value = name
+    if (es('u-txt j-flag')[1] == undefined) {
+        es('u-txt j-flag')[0].value = name
+    } else {
+        es('u-txt j-flag')[1].value = name
+    }
     es('u-btn2 u-btn2-2 u-btn2-w2 j-flag')[0].click()
 }
 
