@@ -3,6 +3,8 @@ const config = {
     listName: '我喜欢的音乐',
 }
 
+const language = ['国语', '英语', '日语', '电音', '纯音乐',]
+
 var es = function (name) {
     return document.getElementsByClassName(name)
 }
@@ -68,7 +70,7 @@ var createList = function (name) {
 
 var createLists = function (num) {
     for (var i = 1; i <= num; i++) {
-        var name = String(i)
+        var name = language[i-1]
         createList(name)
         sleep(5000)
     }
@@ -79,7 +81,7 @@ var _main = function () {
     var numOfLists = Math.ceil(n / config.num)
 
     createLists(numOfLists)
-    // splitList(n)
+    splitList(n)
 }
 
 _main()

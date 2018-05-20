@@ -1,3 +1,6 @@
+import json
+from time import sleep
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -36,8 +39,37 @@ def get_song_tags(name):
     return tags
 
 
+def get_map(tags, l, i):
+    tag_list = []
+    for tag in tags:
+        tag_list.append(tag['name'])
+
+    print('tag_list', tag_list)
+    print('--------------------')
+
+    if '华语' in tag_list or '内地' in tag_list or '台湾' in tag_list:
+        l[i] = 1
+    elif '欧美' in tag_list or '美国' in tag_list or '英国' in tag_list:
+        l[i] = 2
+    elif '日本' in tag_list:
+        l[i] = 3
+
+
 if __name__ == '__main__':
     songs = get_songs()
+    print('songs length', len(songs))
+    i = 0
+    l = [0 for j in range(100)]
     for song in songs:
         print('song_name', song.split('(')[0])
-        get_song_tags(song)
+
+        sleep(2)
+        tags = get_song_tags(song.split('(')[0])
+        get_map(tags, l, i)
+        i += 1
+
+        if i == 25:
+            break
+
+    with open('data.json', 'w') as f:
+        json.dump(l, f)
