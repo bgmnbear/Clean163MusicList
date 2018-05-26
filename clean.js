@@ -1,9 +1,10 @@
 const config = {
-    num: 20,
-    listName: '我喜欢的音乐',
+    num: 25,
 }
 
 const language = ['国语', '英语', '日语', '电音', '纯音乐',]
+
+const mapList = [2, 1, 1, 3, 0, 0, 0, 0, 3, 0, 0, 0, 2, 0, 1, 1, 0, 0, 1, 0, 0, 3, 1, 2, 2,]
 
 var es = function (name) {
     return document.getElementsByClassName(name)
@@ -16,7 +17,6 @@ var e = function (id) {
 var sleep = function (d) {
     for (var t = Date.now(); Date.now() - t <= d;) ;
 }
-
 
 var removeElement = function (name) {
     name.parentNode.removeChild(name)
@@ -41,15 +41,14 @@ var chooseList = function (index) {
     }
 }
 
-var splitList = function (numOfSongs) {
+var splitList = function (numOfSongs, map) {
     var n = numOfSongs
-    var index = 1
+    var m = map
+    var index = 0
     for (var i = 2; i <= n; i++) {
         collectSong(i)
-        chooseList(index)
-        if (i % config.num == 0) {
-            index += 1
-        }
+        chooseList(m[index])
+        index += 1
     }
 }
 
@@ -70,7 +69,7 @@ var createList = function (name) {
 
 var createLists = function (num) {
     for (var i = 1; i <= num; i++) {
-        var name = language[i-1]
+        var name = language[num-i]
         createList(name)
         sleep(5000)
     }
@@ -78,10 +77,11 @@ var createLists = function (num) {
 
 var _main = function () {
     var n = numOfSongs()
-    var numOfLists = Math.ceil(n / config.num)
+    var numOfLists = language.length
+    var map = mapList
 
     createLists(numOfLists)
-    splitList(n)
+    // splitList(config.num, map)
 }
 
 _main()
