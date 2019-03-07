@@ -4,11 +4,11 @@
 
 # 截图
 
-创建歌单
+自动创建歌单
 
 ![image](https://github.com/bgmnbear/Clean163MusicList/blob/master/images/test_list.png)
 
-添加歌曲
+自动添加对应歌曲
 
 ![image](https://github.com/bgmnbear/Clean163MusicList/blob/master/images/test_show.gif)
 
